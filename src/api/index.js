@@ -1,6 +1,6 @@
 'use strict';
 var express = require('express');
-var todos = require('../../public/mock/todos.json');	// import mock todos
+var todos = require('../../mock/todos.json');	// import mock todos
 var router = express.Router();
 
 router.get('/todos', function(req, res) {
