@@ -18,6 +18,16 @@ router.get('/todos', function(req, res) {
 });
 
 // TODO: Add POST route to create new entries
+router.post('/todos', function(req, res) {
+	var todo = req.body;     // we need a body parser
+	Todo.create(todo, function(err, todo) {
+		if(err) {     // if error
+			return res.status(500).json({err: err.message});     // send error
+		}
+		res.json({'todo': todo, message: 'Todo created'});     // else create todo
+     });   
+});
+
 // TODO: Add PUT route to update existing entries
 // TODO: Add DELETE route to delete entries
 
