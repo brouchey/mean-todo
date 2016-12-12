@@ -4,7 +4,7 @@ var todos = require('../../mock/todos.json');	// import mock todos
 var router = express.Router();
 
 router.get('/todos', function(req, res) {
-     res.json({todos: todos});	// get mock todos object
+     res.json({todos: todos});	// get and return mock todos object
 });
 
 // TODO: Add POST route to create new entries
