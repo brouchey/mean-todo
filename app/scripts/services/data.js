@@ -1,15 +1,18 @@
 'use strict';
 
-var angular = require('angular');
+function DataService ($http, $q) {
 
-angular.module('todoListApp')
-.service('dataService', function($http, $q) {
 	this.getTodos = function(cb) {
 		$http.get('/api/todos').then(cb);
 	};
   
 	this.deleteTodo = function(todo) {
-		console.log("I deleted the " + todo.name + " todo!");
+		if (!todo._id) {
+	      return $q.resolve();
+	    }
+	    return $http.delete('/api/todos/' + todo._id).then(function() {
+	      console.log("I deleted the " + todo.name + " todo!");
+	    });
 	};
   
 	this.saveTodos = function(todos) {
@@ -32,4 +35,6 @@ angular.module('todoListApp')
 			});
 		});
 	};
-});
+}
+
+module.exports = DataService;
