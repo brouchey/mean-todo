@@ -1,8 +1,9 @@
 'use strict';
 var express = require('express');
 var router = require('./api');	// import router module
-
 var app = express();
+
+require('./database');	// Singleton
 
 app.use('/', express.static('public'));
 
