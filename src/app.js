@@ -3,7 +3,8 @@ var express = require('express');
 var router = require('./api');	// import router module
 var app = express();
 
-require('./database');	// Singleton
+require('./database');	// link to database
+require('./seed');		// import seed datas
 
 app.use('/', express.static('public'));
 
