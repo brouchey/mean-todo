@@ -11,8 +11,8 @@ var todos = [
 
 todos.forEach(function(todo, index) {		// for each element in our todos
 	Todo.find({'name': todo}, function(err, todos) {	// looking for name
-		if(!err && !todos.length) {			// if we don't find that todo and no error
-			Todo.create({completed: false, name: todo});	// we create that todo
+		if(!err && !todos.length) {			// if no error and todo doesn't exist
+			Todo.create({completed: false, name: todo});	// create that todo
 		};
 	});
 });
