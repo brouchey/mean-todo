@@ -29,6 +29,20 @@ router.post('/todos', function(req, res) {
 });
 
 // TODO: Add PUT route to update existing entries
+router.put('/todos/:id', function(req, res) {     // we add an id
+	var id = req.params.id;     // now we can get the id parameter from the request
+	var todo = req.body;
+	if(todo && todo._id !== id) {     // if there is a todo and if the todo id does not match the requested id
+		return res.status(500).json({err: "IDs dont match !"});     // return error
+	}
+	Todo.findByIdAndUpdate(id, todo, {new: true}, function(err, todo) {		// {new: true} is used so Mongoose returns the new record
+		if(err) {
+			return res.status(500).json({ err: err.message });
+		}
+		res.json({'todo': todo, message: 'Todo updated'});
+     });
+});
+
 // TODO: Add DELETE route to delete entries
 
 module.exports = router;	// export router module
